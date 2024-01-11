@@ -43,7 +43,7 @@ public class ConstructorTest {
 
         homePage
                 .clickOnSaucesButton()
-                .checkConstructorSaucesText();
+                .previousAndNextButtonsAreNotSelected();
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ConstructorTest {
 
         homePage
                 .clickOnFillingsButton()
-                .checkConstructorFillingsText();
+                .previousTwoButtonsAreNotSelected();
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ConstructorTest {
         homePage
                 .clickOnFillingsButton()
                 .clickOnBunsButton()
-                .checkConstructorBunsText();
+                .nextTwoButtonsAreNotSelected();
     }
 
     @After

@@ -22,16 +22,18 @@ public class HomePage {
     private final By logoStellarBurgers = By.xpath(".//div[@class = 'AppHeader_header__logo__2D0X2']");
     //Кнопка Соусы в конструкторе
     private final By saucesButton = By.xpath(".//span[text() = 'Соусы']");
-    //Заголовок Соусы в разделе конструктора
-    private final By saucesText = By.xpath(".//h2[text() = 'Соусы']");
     //Кнопка Начинки в конструкторе
     private final By fillingsButton = By.xpath(".//span[text() = 'Начинки']");
-    //Заголовок Начинки в разделе конструктора
-    private final By fillingsText = By.xpath(".//h2[text() = 'Начинки']");
     //Кнопка Булки в конструкторе
     private final By bunsButton = By.xpath(".//span[text() = 'Булки']");
-    //Заголовок Булки в разделе конструктора
-    private final By bunsText = By.xpath(".//h2[text() = 'Булки']");
+    //Следующая кнопка1 конструктора не выбрана
+    private final By followingButton1 = By.xpath(".//div[@class = 'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/following-sibling::div[1]");
+    //Следующая кнопка2 конструктора не выбрана
+    private final By followingButton2 = By.xpath(".//div[@class = 'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/following-sibling::div[2]");
+    //Предыдущая кнопка1 конструктора не выбрана
+    private final By precedingButton1 = By.xpath(".//div[@class = 'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/preceding-sibling::div[1]");
+    //Предыдущая кнопка2 конструктора не выбрана
+    private final By precedingButton2 = By.xpath(".//div[@class = 'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/preceding-sibling::div[1]");
 
     @Step("Открытие главной страницы")
     public HomePage openHomePage(){
@@ -51,7 +53,7 @@ public class HomePage {
         return this;
     }
 
-    @Step("Проверка наличия заголовка конструктра на главной странице")
+    @Step("Проверка наличия заголовка конструктора на главной странице")
     public HomePage checkConstructorHeaderText(){
         webDriver.findElement(constructorHeaderText).isDisplayed();
         return this;
@@ -69,21 +71,9 @@ public class HomePage {
         return this;
     }
 
-    @Step("Проверка наличия заголовка Соусы в разделе конструктора")
-    public HomePage checkConstructorSaucesText(){
-        webDriver.findElement(saucesText).isDisplayed();
-        return this;
-    }
-
     @Step("Клик по кнопке Начинки в конструкторе")
     public HomePage clickOnFillingsButton(){
         webDriver.findElement(fillingsButton).click();
-        return this;
-    }
-
-    @Step("Проверка наличия заголовка Начинки в разделе конструктора")
-    public HomePage checkConstructorFillingsText(){
-        webDriver.findElement(fillingsText).isDisplayed();
         return this;
     }
 
@@ -93,9 +83,24 @@ public class HomePage {
         return this;
     }
 
-    @Step("Проверка наличия заголовка Булки в разделе конструктора")
-    public HomePage checkConstructorBunsText(){
-        webDriver.findElement(bunsText).isDisplayed();
+    @Step("При выбранной кнопке Булки следующие две кнопки конструктора не выбраны")
+    public HomePage nextTwoButtonsAreNotSelected(){
+        webDriver.findElement(followingButton1);
+        webDriver.findElement(followingButton2);
+        return this;
+    }
+
+    @Step("При выбранной кнопке Соусы предыдущая и следующая кнопка конструктора не выбраны")
+    public HomePage previousAndNextButtonsAreNotSelected(){
+        webDriver.findElement(precedingButton1);
+        webDriver.findElement(followingButton1);
+        return this;
+    }
+
+    @Step("При выбранной кнопке Начинки две предыдущие кнопки конструктора не выбраны")
+    public HomePage previousTwoButtonsAreNotSelected(){
+        webDriver.findElement(precedingButton1);
+        webDriver.findElement(precedingButton2);
         return this;
     }
 }
